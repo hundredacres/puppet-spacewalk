@@ -40,7 +40,7 @@ class spacewalk::repo::server (
         descr    => "Spacewalk ${spacewalk_repo_release} Repository",
         gpgcheck => $spacewalk_repo_gpgcheck,
         gpgkey   => $spacewalk_repo_gpgkey,
-        baseurl  => $$spacewalk_repo_url,
+        baseurl  => $spacewalk_repo_url,
     }
 
       yumrepo {'jpackage-generic':
