@@ -37,7 +37,13 @@ class spacewalk::setup (
   case $db_backend {
     'postgresql': {
       if $postgresql_embedded == false {
-          $external = '--external-postgresql'
+        $external = '--external-postgresql'
+        # create the puppetdb database
+        ::postgresql::server::db { $db_name:
+          user     => $db_user,
+          password => $db_password,
+          grant    => 'all',
+        }
       }
       else { $external = undef }
     }
