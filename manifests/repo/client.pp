@@ -23,6 +23,7 @@ class spacewalk::repo::client (
   $client_repo_gpgcheck = '1',
   $client_repo_release  = 'latest',
   $client_repo_gpgkey   = 'http://yum.spacewalkproject.org/RPM-GPG-KEY-spacewalk-2015',
+  $client_repo_url      = "http://yum.spacewalkproject.org/${client_repo_release}-client/RHEL/${::operatingsystemmajrelease}/\$basearc",
 ){
 
   case $::osfamily {
@@ -33,7 +34,7 @@ class spacewalk::repo::client (
         descr    => "Spacewalk Client ${client_repo_release} Repository",
         gpgcheck => $client_repo_gpgcheck,
         gpgkey   => $client_repo_gpgkey,
-        baseurl  => "http://yum.spacewalkproject.org/${client_repo_release}-client/RHEL/${::operatingsystemmajrelease}/\$basearch/",
+        baseurl  => $client_repo_url,
       }
     }
 
